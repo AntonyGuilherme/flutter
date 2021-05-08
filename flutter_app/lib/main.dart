@@ -18,7 +18,7 @@ class FriendsApp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MyFriend('Antony'),
+                  ItemCounter('Antony'),
                   Padding(
                       padding: const EdgeInsets.all(10),
                       child: DecoratedBox(
@@ -48,6 +48,29 @@ class MyFriend extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.lightBlueAccent),
         child: Text(text, style: TextStyle(fontSize: 50)),
       ),
+    );
+  }
+}
+
+
+class ItemCounter extends StatefulWidget {
+  final String name;
+  ItemCounter(this.name);
+
+  @override
+  _ItemCounterState createState() => _ItemCounterState();
+}
+
+class _ItemCounterState extends State<ItemCounter>{
+  int count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){ setState(() {
+        count++;
+      });  },
+      child: Text('${widget.name}: $count' , style: TextStyle(fontSize: 50),),
     );
   }
 }
